@@ -1,4 +1,4 @@
-package com.amazon_price_drop_alert.clients;
+package com.amazon_price_drop_alert.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,11 +12,7 @@ public class AmazonPriceConfig {
     private String rapidApiKey;
     @Value("${rapidApiHost}")
     private String rapidApiHost;
-
+    @Value("${rapidApiEndpoint}")
     private String rapidApiEndpoint;
-
-
-
-
 
 }

@@ -1,32 +1,33 @@
 package com.amazon_price_drop_alert.services;
 
-import com.amazon_price_drop_alert.domains.SearchedProduct;
 import com.amazon_price_drop_alert.domains.User;
-import com.amazon_price_drop_alert.dtos.UserDto;
 import com.amazon_price_drop_alert.exceptions.UserAlreadyBlockedException;
 import com.amazon_price_drop_alert.exceptions.UserAlreadyExists;
 import com.amazon_price_drop_alert.exceptions.UserAlreadyUnblockedException;
 import com.amazon_price_drop_alert.exceptions.UserNotFoundException;
 import com.amazon_price_drop_alert.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
+@Component
 @AllArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+
     @Override
     public User getUserById(final Long id) throws UserNotFoundException {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User with id: " + id + "is not present in DB"));
 
     }
+
     @Override
     public User createUser(User user) throws UserAlreadyExists {
-        if (userRepository.findByEmail(user.getMail()).isEmpty()) {
-            return userRepository.save(user);
+          if (userRepository.findByEmail(user.getEmail()).isEmpty()) {
+        return userRepository.save(user);
         } else {
             throw new UserAlreadyExists("User with that email already exists");
         }

@@ -22,14 +22,14 @@ public class User {
     @Column
     private String password;
     @Column
-    private String mail;
+    private String email;
     @Column
     private boolean isActive;
     @ManyToMany
     private List<SearchedProduct> searchedProducts = new ArrayList<>();
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String mail) {
+        this.email = mail;
     }
 
     public void setActive(boolean active) {

@@ -1,8 +1,8 @@
-package com.amazon_price_drop_alert.clients.domains;
+package com.amazon_price_drop_alert.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PriceDetails {
+public class PriceDetailsDto {
 
     @JsonProperty
     private String createdAt;

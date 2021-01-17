@@ -1,4 +1,4 @@
-package com.amazon_price_drop_alert.clients;
+package com.amazon_price_drop_alert.services;
 
 import org.springframework.stereotype.Component;
 
@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class AsinRetriever {
 
-    public String convertUrlToAsin(String url){
+    public String convertUrlToAsin(String url) {
 
         String[] splitUrl = url.split("/dp/");
-        return splitUrl[1].substring(0,10);
+        return splitUrl[1].substring(0, 10);
     }
 }

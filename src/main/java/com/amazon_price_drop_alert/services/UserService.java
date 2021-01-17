@@ -13,13 +13,16 @@ import java.util.List;
 public interface UserService {
 
     User getUserById(final Long id) throws UserNotFoundException;
+
     User createUser(final User user) throws UserAlreadyExists;
-    void blockUser (final Long id) throws UserAlreadyBlockedException, UserNotFoundException;
+
+    void blockUser(final Long id) throws UserAlreadyBlockedException, UserNotFoundException;
+
     void unblockUser(final Long id) throws UserAlreadyUnblockedException, UserNotFoundException;
+
     void deleteUser(final Long id);
+
     List<User> getUsers();
-
-
 
 
 }
