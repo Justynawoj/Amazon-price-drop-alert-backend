@@ -10,7 +10,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity (name = "searched_products")
+@Entity(name = "searched_products")
 @Getter
 public class SearchedProduct {
     @Id

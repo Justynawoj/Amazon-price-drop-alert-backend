@@ -1,4 +1,4 @@
-package com.amazon_price_drop_alert.clients;
+package com.amazon_price_drop_alert.services;
 
 import com.amazon_price_drop_alert.clients.AmazonPriceClient;
 

@@ -13,7 +13,7 @@ public class UserDto {
     private Long id;
     private String username;
     private String password;
-    private String mail;
+    private String email;
     private boolean isActive;
     private List<SearchedProduct> searchedProduct;
 

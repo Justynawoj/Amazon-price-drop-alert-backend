@@ -9,27 +9,28 @@ import java.util.List;
 
 @Component
 public class UserMapper {
-    public User mapToUser(UserDto userDto){
+    public User mapToUser(UserDto userDto) {
         return new User(userDto.getId(),
                 userDto.getUsername(),
                 userDto.getPassword(),
-                userDto.getMail(),
+                userDto.getEmail(),
                 userDto.isActive(),
                 userDto.getSearchedProduct());
     }
 
-    public UserDto mapToUserDto(User user){
+    public UserDto mapToUserDto(User user) {
         return new UserDto(user.getId(),
                 user.getUsername(),
                 user.getPassword(),
-                user.getMail(),
+                user.getEmail(),
                 user.isActive(),
                 user.getSearchedProducts());
     }
-    public List<UserDto> mapToUserDtoList(List<User> users){
+
+    public List<UserDto> mapToUserDtoList(List<User> users) {
         List<UserDto> userDtoList = new ArrayList<>();
-        for (User user: users
-             ) {
+        for (User user : users
+        ) {
             userDtoList.add(mapToUserDto(user));
         }
         return userDtoList;

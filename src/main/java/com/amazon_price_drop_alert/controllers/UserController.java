@@ -25,8 +25,9 @@ public class UserController {
     public UserDto getUserById(@PathVariable final Long id) throws UserNotFoundException {
         return userMapper.mapToUserDto(userService.getUserById(id));
     }
+
     @GetMapping
-    public List<UserDto> getUsers(){
+    public List<UserDto> getUsers() {
         return userMapper.mapToUserDtoList(userService.getUsers());
     }
 
@@ -46,7 +47,7 @@ public class UserController {
     }
 
     @DeleteMapping("{id}")
-    public void deleteUser(@PathVariable Long id){
+    public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
 
