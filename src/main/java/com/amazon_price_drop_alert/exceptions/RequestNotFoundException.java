@@ -1,0 +1,8 @@
+package com.amazon_price_drop_alert.exceptions;
+
+public class RequestNotFoundException extends RuntimeException{
+
+    public RequestNotFoundException(String message) {
+        super(message);
+    }
+}
