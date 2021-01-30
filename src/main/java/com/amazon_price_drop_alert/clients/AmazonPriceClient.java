@@ -23,7 +23,7 @@ public class AmazonPriceClient {
 //    private String marketPlace = "IT";
 //    private String asin = "B07FSK3Z6G";
 
-    public ProductDto getResponse(String asin, Country country) {
+    public ProductDto getResponse(String asin, String country) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("x-rapidapi-key", config.getRapidApiKey());

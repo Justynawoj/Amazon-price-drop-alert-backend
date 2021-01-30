@@ -14,7 +14,7 @@ public class RequestMapper {
     public Request mapToRequest(RequestDto requestDto){
         return new Request(
                 requestDto.getId(),
-                requestDto.getAsin(),
+                requestDto.getUrl(),
                 requestDto.getCountry(),
                 requestDto.getRequestedPrice(),
                 requestDto.getEmail(),

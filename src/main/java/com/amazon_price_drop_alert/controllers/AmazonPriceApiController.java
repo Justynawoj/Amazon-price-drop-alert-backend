@@ -24,12 +24,8 @@ public class AmazonPriceApiController {
     private final PriceMapper priceMapper;
 
     @GetMapping()
-//    public ProductDto getResponse(@RequestParam String url, @RequestParam Country country) {
-//
-//        String asin = asinRetriever.convertUrlToAsin(url);
-//        return amazonPriceClient.getResponse(asin, country);
-//    }
-    public ProductDetails getResponse(@RequestParam String url, @RequestParam Country country) {
+
+    public ProductDetails getResponse(@RequestParam String url, @RequestParam String country) {
 
         String asin = asinRetriever.convertUrlToAsin(url);
         ProductDetails pd = priceMapper.mapToProductDetails(amazonPriceClient.getResponse(asin, country));
