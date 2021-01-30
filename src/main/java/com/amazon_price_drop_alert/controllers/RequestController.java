@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 @Controller
 @AllArgsConstructor
 @RequestMapping("/v1/request")
@@ -17,11 +18,6 @@ public class RequestController {
 
     private final RequestService requestService;
     private final RequestMapper requestMapper;
-
-    @PostMapping
-    public void createRequest(@RequestBody RequestDto requestDto) {
-        requestService.createRequest(requestMapper.mapToRequest(requestDto));
-    }
 
     @GetMapping("{id}")
     public RequestDto getRequest(@PathVariable final Long id) {
@@ -33,8 +29,14 @@ public class RequestController {
         return requestMapper.mapToRequestDtoList(requestService.getAllRequests());
     }
 
+    @PostMapping
+    public void createRequest(@RequestBody RequestDto requestDto) {
+        requestService.createRequest(requestMapper.mapToRequest(requestDto));
+    }
+
     @PutMapping("{id}")
     public void setNotActive(@PathVariable final Long id) throws RequestNotFoundException {
         requestService.setNotActive(id);
     }
+
 }

@@ -1,7 +1,5 @@
 package com.amazon_price_drop_alert.domains;
 
-
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +20,7 @@ public class Request {
     @Column
     private String url;
     @Column
-    private Country country;
+    private String country;
     @Column
     private double requestedPrice;
     @Column
@@ -30,8 +28,8 @@ public class Request {
     @Column
     private boolean isActive = true;
 
-    public Request(@NotNull String url, @NotNull Country country,
-                   @NotNull double requestedPrice, @NotNull String email) {
+    public Request( String url, String country,
+                  double requestedPrice,  String email) {
 
         this.url = url;
         this.country = country;
