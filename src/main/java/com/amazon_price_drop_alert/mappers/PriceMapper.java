@@ -18,7 +18,14 @@ public class PriceMapper {
                 new PriceDetails(productDto.getHighestPricing().getPriceAmazon().getPrice()/100,
                         productDto.getHighestPricing().getPriceAmazon().getCreatedAt()),
                 new PriceDetails(productDto.getLowestPricing().getPriceAmazon().getPrice()/100,
-                        productDto.getLowestPricing().getPriceAmazon().getCreatedAt()));
-    }
+                        productDto.getLowestPricing().getPriceAmazon().getCreatedAt()),
 
+                new PriceDetails(productDto.getCurrentPriceDto().getPriceNew()/100,
+                "today"),
+                new PriceDetails(productDto.getHighestPricing().getPriceNew().getPrice()/100,
+                        productDto.getHighestPricing().getPriceNew().getCreatedAt()),
+                new PriceDetails(productDto.getLowestPricing().getPriceNew().getPrice()/100,
+                        productDto.getLowestPricing().getPriceNew().getCreatedAt())
+        );
+    }
 }
