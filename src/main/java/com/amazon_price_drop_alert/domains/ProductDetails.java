@@ -17,22 +17,17 @@ public class ProductDetails {
     @JsonProperty
     private String title;
     @JsonProperty
-    private PriceDetails currentPriceDto;
+    private PriceDetails currentPriceAmazon;
     @JsonProperty
-    private PriceDetails highestPricing;
+    private PriceDetails highestPriceAmazon;
     @JsonProperty
-    private PriceDetails lowestPricing;
+    private PriceDetails lowestPricingAmazon;
 
-    @Override
-    public String toString() {
-        return "ProductDetails{" +
-                "asin='" + asin + '\'' +
-                ", createdAt='" + createdAt + '\'' +
-                ", currencySymbol='" + currencySymbol + '\'' +
-                ", title='" + title + '\'' +
-                ", currentPriceDto=" + currentPriceDto +
-                ", highestPricing=" + highestPricing +
-                ", lowestPricing=" + lowestPricing +
-                '}';
-    }
+    @JsonProperty
+    private PriceDetails currentPriceThirdPart;
+    @JsonProperty
+    private PriceDetails highestPriceThirdPart;
+    @JsonProperty
+    private PriceDetails lowestPricingThirdPart;
+
 }
