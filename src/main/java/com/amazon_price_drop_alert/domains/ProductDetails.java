@@ -3,9 +3,13 @@ package com.amazon_price_drop_alert.domains;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class ProductDetails {
 
     @JsonProperty
@@ -30,4 +34,10 @@ public class ProductDetails {
     @JsonProperty
     private PriceDetails lowestPricingThirdPart;
 
+    public ProductDetails(String asin, String createdAt, String currencySymbol, String title) {
+        this.asin = asin;
+        this.createdAt = createdAt;
+        this.currencySymbol = currencySymbol;
+        this.title = title;
+    }
 }
