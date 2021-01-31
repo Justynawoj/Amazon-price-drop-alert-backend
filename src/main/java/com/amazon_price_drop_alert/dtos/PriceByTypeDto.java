@@ -2,8 +2,10 @@ package com.amazon_price_drop_alert.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class PriceByTypeDto {
 
     @JsonProperty
