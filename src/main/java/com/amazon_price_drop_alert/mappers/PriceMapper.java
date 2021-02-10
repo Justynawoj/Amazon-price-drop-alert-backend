@@ -1,7 +1,6 @@
 package com.amazon_price_drop_alert.mappers;
 
-import com.amazon_price_drop_alert.domains.PriceDetails;
-import com.amazon_price_drop_alert.domains.ProductDetailsDto;
+import com.amazon_price_drop_alert.dtos.ProductDetailsDto;
 import com.amazon_price_drop_alert.dtos.PriceDetailsDto;
 import com.amazon_price_drop_alert.dtos.ProductDto;
 import org.springframework.stereotype.Component;
@@ -17,44 +16,44 @@ public class PriceMapper {
                 productDto.getCurrencySymbol(),
                 productDto.getTitle());
 
-        if(productDto.getCurrentPriceDto().getPriceAmazon() == null || productDto.getCurrentPriceDto() == null){
+        if(productDto.getCurrentPriceDto().getPriceAmazon() == null){
             productDto.getCurrentPriceDto().setPriceAmazon(0.0);
         }
-        productDetailsDto.setCurrentPriceAmazon(new PriceDetails(productDto.getCurrentPriceDto().getPriceAmazon()/100,"Today"));
+        productDetailsDto.setCurrentPriceAmazon(new PriceDetailsDto("Today",productDto.getCurrentPriceDto().getPriceAmazon()/100));
 
-        if(productDto.getHighestPricing().getPriceAmazon()==null || productDto.getHighestPricing() == null){
+        if(productDto.getHighestPricing().getPriceAmazon()==null){
             productDto.getHighestPricing().setPriceAmazon(new PriceDetailsDto("not available",0.0));
         }
-        productDetailsDto.setHighestPriceAmazon(new PriceDetails(
-                productDto.getHighestPricing().getPriceAmazon().getPrice()/100,
-                productDto.getHighestPricing().getPriceAmazon().getCreatedAt()));
+        productDetailsDto.setHighestPriceAmazon(new PriceDetailsDto(
+                productDto.getHighestPricing().getPriceAmazon().getCreatedAt(),
+                productDto.getHighestPricing().getPriceAmazon().getPrice()/100));
 
-        if(productDto.getLowestPricing().getPriceAmazon()==null || productDto.getLowestPricing()==null){
+        if(productDto.getLowestPricing().getPriceAmazon()==null){
             productDto.getLowestPricing().setPriceAmazon(new PriceDetailsDto("not available", 0.0));
         }
-        productDetailsDto.setLowestPricingAmazon(new PriceDetails(
-                productDto.getLowestPricing().getPriceAmazon().getPrice()/100,
-                productDto.getLowestPricing().getPriceAmazon().getCreatedAt()));
+        productDetailsDto.setLowestPricingAmazon(new PriceDetailsDto(
+                productDto.getLowestPricing().getPriceAmazon().getCreatedAt(),
+                productDto.getLowestPricing().getPriceAmazon().getPrice()/100));
 
-        if(productDto.getCurrentPriceDto().getPriceNew()==null || productDto.getCurrentPriceDto()==null){
+        if(productDto.getCurrentPriceDto().getPriceNew()==null){
             productDto.getCurrentPriceDto().setPriceNew(0.0);
         }
-        productDetailsDto.setCurrentPriceThirdPart(new PriceDetails(productDto.getCurrentPriceDto().getPriceNew()/100,"Today"));
+        productDetailsDto.setCurrentPriceThirdPart(new PriceDetailsDto("Today",productDto.getCurrentPriceDto().getPriceNew()/100));
 
-        if(productDto.getHighestPricing().getPriceNew()==null || productDto.getHighestPricing()==null){
+        if(productDto.getHighestPricing().getPriceNew()==null){
             productDto.getHighestPricing().setPriceNew(new PriceDetailsDto("not available", 0.0));
         }
-        productDetailsDto.setHighestPriceThirdPart(new PriceDetails(
-                productDto.getHighestPricing().getPriceNew().getPrice()/100,
-                productDto.getHighestPricing().getPriceNew().getCreatedAt()));
+        productDetailsDto.setHighestPriceThirdPart(new PriceDetailsDto(
+                productDto.getHighestPricing().getPriceNew().getCreatedAt(),
+                productDto.getHighestPricing().getPriceNew().getPrice()/100));
 
-        if(productDto.getLowestPricing().getPriceNew() == null || productDto.getLowestPricing() == null){
+        if(productDto.getLowestPricing().getPriceNew() == null){
             productDto.getLowestPricing().setPriceNew(new PriceDetailsDto("not available", 0.0));
         }
 
-        productDetailsDto.setLowestPricingThirdPart(new PriceDetails(
-                productDto.getLowestPricing().getPriceNew().getPrice()/100,
-                productDto.getLowestPricing().getPriceNew().getCreatedAt()));
+        productDetailsDto.setLowestPricingThirdPart(new PriceDetailsDto(
+                productDto.getLowestPricing().getPriceNew().getCreatedAt(),
+                productDto.getLowestPricing().getPriceNew().getPrice()/100));
 
         return productDetailsDto;
     }
