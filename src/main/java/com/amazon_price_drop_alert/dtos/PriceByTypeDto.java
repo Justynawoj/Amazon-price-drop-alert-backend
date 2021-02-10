@@ -10,10 +10,8 @@ public class PriceByTypeDto {
 
     @JsonProperty
     private PriceDetailsDto priceAmazon;
-
     @JsonProperty
     private PriceDetailsDto priceNew;
-
     @JsonProperty
     private PriceDetailsDto priceUsed;
 }
