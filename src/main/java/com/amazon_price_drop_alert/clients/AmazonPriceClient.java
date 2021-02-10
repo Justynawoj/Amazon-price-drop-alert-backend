@@ -1,9 +1,10 @@
 package com.amazon_price_drop_alert.clients;
 
-import com.amazon_price_drop_alert.dtos.ProductDto;
 import com.amazon_price_drop_alert.config.AmazonPriceConfig;
-import com.amazon_price_drop_alert.domains.Country;
+import com.amazon_price_drop_alert.dtos.ProductDto;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -19,16 +20,13 @@ public class AmazonPriceClient {
 
     private final RestTemplate restTemplate;
     private final AmazonPriceConfig config;
-
-//    private String marketPlace = "IT";
-//    private String asin = "B07FSK3Z6G";
+    private final Logger LOGGER = LoggerFactory.getLogger(AmazonPriceClient.class);
 
     public ProductDto getResponse(String asin, String country) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("x-rapidapi-key", config.getRapidApiKey());
         headers.set("x-rapidapi-host", config.getRapidApiHost());
-
         HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
 
         ResponseEntity<ProductDto> responseObj = restTemplate.exchange(
@@ -36,6 +34,7 @@ public class AmazonPriceClient {
                         + asin
                         + "&marketplace=" + country,
                 HttpMethod.GET, entity, ProductDto.class);
+        LOGGER.info("Received request");
         try {
             return responseObj.getBody();
         } catch (Exception e) {
@@ -43,5 +42,4 @@ public class AmazonPriceClient {
             return new ProductDto();
         }
     }
-
 }

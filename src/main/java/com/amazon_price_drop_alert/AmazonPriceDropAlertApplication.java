@@ -10,8 +10,6 @@ public class AmazonPriceDropAlertApplication {
 
     public static void main(String[] args){
         SpringApplication.run(AmazonPriceDropAlertApplication.class, args);
-
-
     }
 
 }

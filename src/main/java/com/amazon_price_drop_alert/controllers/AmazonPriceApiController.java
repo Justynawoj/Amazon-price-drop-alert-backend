@@ -1,10 +1,7 @@
 package com.amazon_price_drop_alert.controllers;
 
 import com.amazon_price_drop_alert.clients.AmazonPriceClient;
-import com.amazon_price_drop_alert.domains.PriceDetails;
-import com.amazon_price_drop_alert.domains.ProductDetails;
-import com.amazon_price_drop_alert.dtos.ProductDto;
-import com.amazon_price_drop_alert.domains.Country;
+import com.amazon_price_drop_alert.domains.ProductDetailsDto;
 import com.amazon_price_drop_alert.mappers.PriceMapper;
 import com.amazon_price_drop_alert.services.AsinRetriever;
 import lombok.AllArgsConstructor;
@@ -16,22 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/v1/price")
 @AllArgsConstructor
-//@CrossOrigin(origins = "*")
 public class AmazonPriceApiController {
 
     private final AmazonPriceClient amazonPriceClient;
     private final AsinRetriever asinRetriever;
     private final PriceMapper priceMapper;
 
-    @GetMapping()
-
-    public ProductDetails getResponse(@RequestParam String url, @RequestParam String country) {
+    @GetMapping
+    public ProductDetailsDto getResponse(@RequestParam String url, @RequestParam String country) {
 
         String asin = asinRetriever.convertUrlToAsin(url);
-        ProductDetails pd = priceMapper.mapToProductDetails(amazonPriceClient.getResponse(asin, country));
-
-        System.out.println(pd.toString());
-
-        return pd;
+        return priceMapper.mapToProductDetails(amazonPriceClient.getResponse(asin, country));
     }
 }
