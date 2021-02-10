@@ -38,5 +38,4 @@ public class RequestController {
     public void setNotActive(@PathVariable final Long id) throws RequestNotFoundException {
         requestService.setNotActive(id);
     }
-
 }
