@@ -1,4 +1,4 @@
-package com.amazon_price_drop_alert.domains;
+package com.amazon_price_drop_alert.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,12 +15,12 @@ public class ProductDetailsDto {
     private String createdAt;
     private String currencySymbol;
     private String title;
-    private PriceDetails currentPriceAmazon;
-    private PriceDetails highestPriceAmazon;
-    private PriceDetails lowestPricingAmazon;
-    private PriceDetails currentPriceThirdPart;
-    private PriceDetails highestPriceThirdPart;
-    private PriceDetails lowestPricingThirdPart;
+    private PriceDetailsDto currentPriceAmazon;
+    private PriceDetailsDto highestPriceAmazon;
+    private PriceDetailsDto lowestPricingAmazon;
+    private PriceDetailsDto currentPriceThirdPart;
+    private PriceDetailsDto highestPriceThirdPart;
+    private PriceDetailsDto lowestPricingThirdPart;
 
     public ProductDetailsDto(String asin, String createdAt, String currencySymbol, String title) {
         this.asin = asin;

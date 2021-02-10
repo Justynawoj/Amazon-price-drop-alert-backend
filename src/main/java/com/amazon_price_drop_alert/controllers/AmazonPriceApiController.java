@@ -1,7 +1,7 @@
 package com.amazon_price_drop_alert.controllers;
 
 import com.amazon_price_drop_alert.clients.AmazonPriceClient;
-import com.amazon_price_drop_alert.domains.ProductDetailsDto;
+import com.amazon_price_drop_alert.dtos.ProductDetailsDto;
 import com.amazon_price_drop_alert.mappers.PriceMapper;
 import com.amazon_price_drop_alert.services.AsinRetriever;
 import lombok.AllArgsConstructor;

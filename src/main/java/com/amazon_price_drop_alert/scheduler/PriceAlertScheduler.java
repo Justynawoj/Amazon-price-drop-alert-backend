@@ -2,7 +2,7 @@ package com.amazon_price_drop_alert.scheduler;
 
 import com.amazon_price_drop_alert.controllers.AmazonPriceApiController;
 import com.amazon_price_drop_alert.domains.Mail;
-import com.amazon_price_drop_alert.domains.ProductDetailsDto;
+import com.amazon_price_drop_alert.dtos.ProductDetailsDto;
 import com.amazon_price_drop_alert.domains.Request;
 import com.amazon_price_drop_alert.repositories.RequestRepository;
 import com.amazon_price_drop_alert.services.EmailService;
