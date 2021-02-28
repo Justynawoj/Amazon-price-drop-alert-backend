@@ -19,7 +19,7 @@ public class PriceMapper {
         if(productDto.getCurrentPriceDto().getPriceAmazon() == null){
             productDto.getCurrentPriceDto().setPriceAmazon(0.0);
         }
-        productDetailsDto.setCurrentPriceAmazon(new PriceDetailsDto("Today",productDto.getCurrentPriceDto().getPriceAmazon()/100));
+        productDetailsDto.setCurrentPriceAmazon(productDto.getCurrentPriceDto().getPriceAmazon()/100);
 
         if(productDto.getHighestPricing().getPriceAmazon()==null){
             productDto.getHighestPricing().setPriceAmazon(new PriceDetailsDto("not available",0.0));
@@ -38,7 +38,7 @@ public class PriceMapper {
         if(productDto.getCurrentPriceDto().getPriceNew()==null){
             productDto.getCurrentPriceDto().setPriceNew(0.0);
         }
-        productDetailsDto.setCurrentPriceThirdPart(new PriceDetailsDto("Today",productDto.getCurrentPriceDto().getPriceNew()/100));
+        productDetailsDto.setCurrentPriceThirdPart(productDto.getCurrentPriceDto().getPriceNew()/100);
 
         if(productDto.getHighestPricing().getPriceNew()==null){
             productDto.getHighestPricing().setPriceNew(new PriceDetailsDto("not available", 0.0));
