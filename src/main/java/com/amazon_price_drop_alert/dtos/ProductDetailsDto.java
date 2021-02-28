@@ -15,10 +15,10 @@ public class ProductDetailsDto {
     private String createdAt;
     private String currencySymbol;
     private String title;
-    private PriceDetailsDto currentPriceAmazon;
+    private double currentPriceAmazon;
     private PriceDetailsDto highestPriceAmazon;
     private PriceDetailsDto lowestPricingAmazon;
-    private PriceDetailsDto currentPriceThirdPart;
+    private double currentPriceThirdPart;
     private PriceDetailsDto highestPriceThirdPart;
     private PriceDetailsDto lowestPricingThirdPart;
 

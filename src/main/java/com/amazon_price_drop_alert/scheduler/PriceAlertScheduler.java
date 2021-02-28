@@ -34,10 +34,10 @@ public class PriceAlertScheduler {
             if (request.isActive()) {
                 LOGGER.info("Calling api for request " + request.getId() + " id");
                 ProductDetailsDto currentDetails = priceApiController.getResponse(request.getUrl(), request.getCountry());
-                if (currentDetails.getCurrentPriceAmazon().getPrice() / 100 <= request.getRequestedPrice() &&
-                        currentDetails.getCurrentPriceAmazon().getPrice() > 0 ||
-                        currentDetails.getCurrentPriceThirdPart().getPrice() / 100 <= request.getRequestedPrice() &&
-                                currentDetails.getCurrentPriceThirdPart().getPrice() > 0) {
+                if (currentDetails.getCurrentPriceAmazon()/ 100 <= request.getRequestedPrice() &&
+                        currentDetails.getCurrentPriceAmazon() > 0 ||
+                        currentDetails.getCurrentPriceThirdPart() / 100 <= request.getRequestedPrice() &&
+                                currentDetails.getCurrentPriceThirdPart() > 0) {
                     String subject = generateSubject(currentDetails);
                     String message = generateMessage(request, currentDetails);
                     emailService.send(new Mail(request.getEmail(), "justynabuonanno@gmail.com", subject, message));
@@ -50,8 +50,8 @@ public class PriceAlertScheduler {
     private String generateMessage(Request request, ProductDetailsDto productDetailsDto) {
 
         String message = "Good news!\nThe price of \n" + productDetailsDto.getTitle()
-                + "\nhas dropped down! \nCurrent Amazon price is: " + productDetailsDto.getCurrentPriceAmazon().getPrice()
-                + "and current Amazon third part price is: " + productDetailsDto.getCurrentPriceThirdPart().getPrice()
+                + "\nhas dropped down! \nCurrent Amazon price is: " + productDetailsDto.getCurrentPriceAmazon()
+                + "and current Amazon third part price is: " + productDetailsDto.getCurrentPriceThirdPart()
                 + "\nDon't miss it. Go to " + request.getUrl();
 
         return message;
