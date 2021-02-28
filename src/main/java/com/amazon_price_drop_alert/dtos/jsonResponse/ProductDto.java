@@ -1,5 +1,7 @@
-package com.amazon_price_drop_alert.dtos;
+package com.amazon_price_drop_alert.dtos.jsonResponse;
 
+import com.amazon_price_drop_alert.dtos.jsonResponse.CurrentPriceDto;
+import com.amazon_price_drop_alert.dtos.jsonResponse.PriceByTypeDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;

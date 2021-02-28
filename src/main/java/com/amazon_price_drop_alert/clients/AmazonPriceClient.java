@@ -1,7 +1,7 @@
 package com.amazon_price_drop_alert.clients;
 
 import com.amazon_price_drop_alert.config.AmazonPriceConfig;
-import com.amazon_price_drop_alert.dtos.ProductDto;
+import com.amazon_price_drop_alert.dtos.jsonResponse.ProductDto;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

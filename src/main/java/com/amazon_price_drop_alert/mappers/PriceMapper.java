@@ -1,8 +1,8 @@
 package com.amazon_price_drop_alert.mappers;
 
 import com.amazon_price_drop_alert.dtos.ProductDetailsDto;
-import com.amazon_price_drop_alert.dtos.PriceDetailsDto;
-import com.amazon_price_drop_alert.dtos.ProductDto;
+import com.amazon_price_drop_alert.dtos.jsonResponse.PriceDetailsDto;
+import com.amazon_price_drop_alert.dtos.jsonResponse.ProductDto;
 import org.springframework.stereotype.Component;
 
 

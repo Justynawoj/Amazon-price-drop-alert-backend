@@ -1,5 +1,6 @@
 package com.amazon_price_drop_alert.dtos;
 
+import com.amazon_price_drop_alert.dtos.jsonResponse.PriceDetailsDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
