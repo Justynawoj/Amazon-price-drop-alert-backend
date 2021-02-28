@@ -32,7 +32,8 @@ public class AmazonPriceClient {
         ResponseEntity<ProductDto> responseObj = restTemplate.exchange(
                 config.getRapidApiEndpoint()
                         + asin
-                        + "&marketplace=" + country,
+                        + "&marketplace="
+                        + country,
                 HttpMethod.GET, entity, ProductDto.class);
         LOGGER.info("Received request");
         try {
