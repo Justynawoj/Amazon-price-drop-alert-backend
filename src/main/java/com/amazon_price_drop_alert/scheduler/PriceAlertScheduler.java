@@ -4,6 +4,7 @@ import com.amazon_price_drop_alert.controllers.AmazonPriceApiController;
 import com.amazon_price_drop_alert.domains.Mail;
 import com.amazon_price_drop_alert.dtos.ProductDetailsDto;
 import com.amazon_price_drop_alert.domains.Request;
+import com.amazon_price_drop_alert.exceptions.AsinNotFoundException;
 import com.amazon_price_drop_alert.repositories.RequestRepository;
 import com.amazon_price_drop_alert.services.EmailService;
 import com.amazon_price_drop_alert.services.RequestService;
@@ -26,7 +27,7 @@ public class PriceAlertScheduler {
     private final Logger LOGGER = LoggerFactory.getLogger(PriceAlertScheduler.class);
 
     @Scheduled(cron = "0 0 10 * * *")
-    public void sendAlert() {
+    public void sendAlert() throws AsinNotFoundException {
         LOGGER.info("Starting Scheduler");
         List<Request> allRequests = requestRepository.findAll();
         for (Request request : allRequests
