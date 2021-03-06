@@ -1,5 +1,6 @@
 package com.amazon_price_drop_alert.domains;
 
+import com.amazon_price_drop_alert.dtos.ProductDetailsDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -10,4 +11,6 @@ public class Mail {
     private final String toCc;
     private final String subject;
     private final String message;
+    private final Request request;
+    private  final ProductDetailsDto productDetailsDto;
 }
