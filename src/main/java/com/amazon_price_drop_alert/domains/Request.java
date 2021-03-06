@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 
 @AllArgsConstructor
@@ -37,7 +38,33 @@ public class Request {
         this.email = email;
     }
 
+    public Request(String url, String country, double requestedPrice, String email, boolean isActive) {
+        this.url = url;
+        this.country = country;
+        this.requestedPrice = requestedPrice;
+        this.email = email;
+        this.isActive = isActive;
+    }
+
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Request request = (Request) o;
+        return Double.compare(request.requestedPrice, requestedPrice) == 0 &&
+                isActive == request.isActive &&
+                Objects.equals(id, request.id) &&
+                Objects.equals(url, request.url) &&
+                Objects.equals(country, request.country) &&
+                Objects.equals(email, request.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, url, country, requestedPrice, email, isActive);
     }
 }
