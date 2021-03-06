@@ -4,6 +4,7 @@ import com.amazon_price_drop_alert.controllers.AmazonPriceApiController;
 import com.amazon_price_drop_alert.domains.Mail;
 import com.amazon_price_drop_alert.dtos.ProductDetailsDto;
 import com.amazon_price_drop_alert.domains.Request;
+import com.amazon_price_drop_alert.dtos.jsonResponse.PriceDetailsDto;
 import com.amazon_price_drop_alert.exceptions.AsinNotFoundException;
 import com.amazon_price_drop_alert.repositories.RequestRepository;
 import com.amazon_price_drop_alert.services.EmailService;
@@ -26,7 +27,8 @@ public class PriceAlertScheduler {
     private final EmailService emailService;
     private final Logger LOGGER = LoggerFactory.getLogger(PriceAlertScheduler.class);
 
-    @Scheduled(cron = "0 0 10 * * *")
+  //  @Scheduled(cron = "0 0 10 * * *")
+    @Scheduled(fixedDelay = 10000)
     public void sendAlert() throws AsinNotFoundException {
         LOGGER.info("Starting Scheduler");
         List<Request> allRequests = requestRepository.findAll();
@@ -34,14 +36,31 @@ public class PriceAlertScheduler {
         ) {
             if (request.isActive()) {
                 LOGGER.info("Calling api for request " + request.getId() + " id");
-                ProductDetailsDto currentDetails = priceApiController.getResponse(request.getUrl(), request.getCountry());
+           //     ProductDetailsDto currentDetails = priceApiController.getResponse(request.getUrl(), request.getCountry());
+
+                /*
+                    Stubbed data to be deleted once implementation is over
+                 */
+
+                ProductDetailsDto currentDetails = new ProductDetailsDto("asin",
+                        "date","currencySymbol",
+                        "titile",
+                        20.00,new PriceDetailsDto("higestdate",20.00),
+                        new PriceDetailsDto("higestdate",20.00),200.00,
+                        new PriceDetailsDto("higestdate",20.00),
+                        new PriceDetailsDto("higestdate",20.00));
+
+                /*
+                    End of stubbed data
+                 */
+
                 if (currentDetails.getCurrentPriceAmazon()/ 100 <= request.getRequestedPrice() &&
                         currentDetails.getCurrentPriceAmazon() > 0 ||
                         currentDetails.getCurrentPriceThirdPart() / 100 <= request.getRequestedPrice() &&
                                 currentDetails.getCurrentPriceThirdPart() > 0) {
                     String subject = generateSubject(currentDetails);
                     String message = generateMessage(request, currentDetails);
-                    emailService.send(new Mail(request.getEmail(), "justynabuonanno@gmail.com", subject, message));
+                    emailService.send(new Mail(request.getEmail(), "justynabuonanno@gmail.com", subject, message, request, currentDetails));
                     requestService.setNotActive(request.getId());
                 }
             }
