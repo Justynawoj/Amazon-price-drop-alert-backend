@@ -32,4 +32,8 @@ public class RequestService {
         requestToUpdate.setActive(false);
         requestRepository.save(requestToUpdate);
     }
+
+    public void deleteById(final Long id) {
+        requestRepository.deleteById(id);
+    }
 }

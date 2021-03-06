@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-
 public class RequestMapper {
 
     public Request mapToRequest(RequestDto requestDto){

@@ -38,4 +38,9 @@ public class RequestController {
     public void setNotActive(@PathVariable final Long id) throws RequestNotFoundException {
         requestService.setNotActive(id);
     }
+
+    @DeleteMapping("{id}")
+    public void deleteRequest(@PathVariable final Long id) throws RequestNotFoundException {
+        requestService.deleteById(id);
+    }
 }
