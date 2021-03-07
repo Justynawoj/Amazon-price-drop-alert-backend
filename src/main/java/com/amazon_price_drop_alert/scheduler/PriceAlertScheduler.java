@@ -43,41 +43,33 @@ public class PriceAlertScheduler {
                  */
 
                 ProductDetailsDto currentDetails = new ProductDetailsDto("asin",
-                        "date","currencySymbol",
-                        "titile",
-                        20.00,new PriceDetailsDto("higestdate",20.00),
-                        new PriceDetailsDto("higestdate",20.00),200.00,
-                        new PriceDetailsDto("higestdate",20.00),
-                        new PriceDetailsDto("higestdate",20.00));
+                        "date",
+                        "$",
+                        "titile1111titile2222titile3333titile4444titile5555titile6666titile77777titile8888",
+                        20.00,
+                        new PriceDetailsDto("highest date",40.00),
+                        new PriceDetailsDto("lowest Date",10.00),
+                        20.00,
+                        new PriceDetailsDto("highest date",40.00),
+                        new PriceDetailsDto("lowest date",20.00));
 
                 /*
                     End of stubbed data
                  */
 
-                if (currentDetails.getCurrentPriceAmazon()/ 100 <= request.getRequestedPrice() &&
+                if (currentDetails.getCurrentPriceAmazon() <= request.getRequestedPrice() &&
                         currentDetails.getCurrentPriceAmazon() > 0 ||
-                        currentDetails.getCurrentPriceThirdPart() / 100 <= request.getRequestedPrice() &&
+                        currentDetails.getCurrentPriceThirdPart() <= request.getRequestedPrice() &&
                                 currentDetails.getCurrentPriceThirdPart() > 0) {
                     String subject = generateSubject(currentDetails);
-                    String message = generateMessage(request, currentDetails);
-                    emailService.send(new Mail(request.getEmail(), "justynabuonanno@gmail.com", subject, message, request, currentDetails));
+                    emailService.send(new Mail(request.getEmail(), subject, request, currentDetails));
                     requestService.setNotActive(request.getId());
                 }
             }
         }
     }
 
-    private String generateMessage(Request request, ProductDetailsDto productDetailsDto) {
-
-        String message = "Good news!\nThe price of \n" + productDetailsDto.getTitle()
-                + "\nhas dropped down! \nCurrent Amazon price is: " + productDetailsDto.getCurrentPriceAmazon()
-                + "and current Amazon third part price is: " + productDetailsDto.getCurrentPriceThirdPart()
-                + "\nDon't miss it. Go to " + request.getUrl();
-
-        return message;
-    }
-
     private String generateSubject(ProductDetailsDto productDetailsDto) {
-        return "Price drop alert for " + productDetailsDto.getTitle();
+        return "Price drop alert for " + productDetailsDto.getTitle().substring(0,50)+"...";
     }
 }

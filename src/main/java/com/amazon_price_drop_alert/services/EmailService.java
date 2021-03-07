@@ -38,19 +38,8 @@ public class EmailService {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setTo(mail.getMailTo());
             messageHelper.setSubject(mail.getSubject());
-            messageHelper.setText(emailCreatorService.buildEmail(mail.getMessage(),mail.getRequest(),mail.getProductDetailsDto()), true);
+            messageHelper.setText(emailCreatorService.buildEmail(mail.getRequest(),mail.getProductDetailsDto()), true);
         };
     }
-
-
-//
-//    private SimpleMailMessage createMailMessage(final Mail mail) {
-//
-//        SimpleMailMessage mailMessage = new SimpleMailMessage();
-//        mailMessage.setTo(mail.getMailTo());
-//        mailMessage.setSubject(mail.getSubject());
-//        mailMessage.setText(emailCreatorService.buildEmail(mail.getMessage()));
-//        return mailMessage;
-//    }
 
 }
