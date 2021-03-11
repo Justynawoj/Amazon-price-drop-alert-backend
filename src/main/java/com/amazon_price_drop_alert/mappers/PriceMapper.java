@@ -8,25 +8,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PriceMapper {
+
     public ProductDetailsDto mapToProductDetails(ProductDto productDto) {
 
-        if(productDto.getCurrentPriceDto().getPriceAmazon() == null){
-            productDto.getCurrentPriceDto().setPriceAmazon(-1.0);
-        }
         if(productDto.getHighestPricing().getPriceAmazon()==null){
-            productDto.getHighestPricing().setPriceAmazon(new PriceDetailsDto("",-1.0));
+            productDto.getHighestPricing().setPriceAmazon(new PriceDetailsDto());
         }
         if(productDto.getLowestPricing().getPriceAmazon()==null){
-            productDto.getLowestPricing().setPriceAmazon(new PriceDetailsDto("", -1.0));
-        }
-        if(productDto.getCurrentPriceDto().getPriceNew()==null){
-            productDto.getCurrentPriceDto().setPriceNew(-1.0);
+            productDto.getLowestPricing().setPriceAmazon(new PriceDetailsDto());
         }
         if(productDto.getHighestPricing().getPriceNew()==null){
-            productDto.getHighestPricing().setPriceNew(new PriceDetailsDto("", -1.0));
+            productDto.getHighestPricing().setPriceNew(new PriceDetailsDto());
         }
         if(productDto.getLowestPricing().getPriceNew() == null){
-            productDto.getLowestPricing().setPriceNew(new PriceDetailsDto("", -1.0));
+            productDto.getLowestPricing().setPriceNew(new PriceDetailsDto());
         }
         ProductDetailsDto productDetailsDto = new ProductDetailsDto(
                 productDto.getAsin(),
@@ -61,7 +56,6 @@ public class PriceMapper {
                         productDetailsDtoToBeConverted.getHighestPriceThirdPart().getPrice()/100),
                 new PriceDetailsDto(productDetailsDtoToBeConverted.getLowestPricingThirdPart().getCreatedAt(),
                         productDetailsDtoToBeConverted.getLowestPricingThirdPart().getPrice()/100));
-
     }
 
 }

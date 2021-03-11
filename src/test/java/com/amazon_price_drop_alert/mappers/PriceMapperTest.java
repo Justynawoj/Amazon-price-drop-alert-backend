@@ -34,18 +34,18 @@ class PriceMapperTest {
         assertEquals(productDto.getCreatedAt(), productDetailsDto.getCreatedAt());
         assertEquals(productDto.getCurrencySymbol(), productDetailsDto.getCurrencySymbol());
         assertEquals(productDto.getTitle(), productDetailsDto.getTitle());
-        assertEquals(30.00, productDetailsDto.getCurrentPriceAmazon(), 1);
-        assertEquals(40.00, productDetailsDto.getHighestPriceAmazon().getPrice(), 1);
+        assertEquals(30.00, productDetailsDto.getCurrentPriceAmazon(), 0.001);
+        assertEquals(40.00, productDetailsDto.getHighestPriceAmazon().getPrice(), 0.001);
         assertEquals(productDto.getHighestPricing().getPriceAmazon().getCreatedAt(),
                 productDetailsDto.getHighestPriceAmazon().getCreatedAt());
-        assertEquals(20.00, productDetailsDto.getLowestPricingAmazon().getPrice(), 1);
+        assertEquals(20.00, productDetailsDto.getLowestPricingAmazon().getPrice(), 0.001);
         assertEquals(productDto.getLowestPricing().getPriceAmazon().getCreatedAt(),
                 productDetailsDto.getLowestPricingAmazon().getCreatedAt());
-        assertEquals(35.00, productDetailsDto.getCurrentPriceThirdPart(), 1);
-        assertEquals(45.00, productDetailsDto.getHighestPriceThirdPart().getPrice(), 1);
+        assertEquals(35.00, productDetailsDto.getCurrentPriceThirdPart(), 0.001);
+        assertEquals(45.00, productDetailsDto.getHighestPriceThirdPart().getPrice(), 0.001);
         assertEquals(productDto.getHighestPricing().getPriceNew().getCreatedAt(),
                 productDetailsDto.getHighestPriceThirdPart().getCreatedAt());
-        assertEquals(25.00, productDetailsDto.getLowestPricingThirdPart().getPrice(), 1);
+        assertEquals(25.00, productDetailsDto.getLowestPricingThirdPart().getPrice(), 0.001);
         assertEquals(productDto.getLowestPricing().getPriceNew().getCreatedAt(),
                 productDetailsDto.getLowestPricingThirdPart().getCreatedAt());
 
@@ -61,16 +61,13 @@ class PriceMapperTest {
         ProductDetailsDto productDetailsDto = mapper.mapToProductDetails(productDto);
 
         //Then
-        assertNotNull(productDetailsDto.getLowestPricingAmazon().getCreatedAt());
-        assertNotNull(productDetailsDto.getLowestPricingAmazon().getPrice());
-        assertNotNull(productDetailsDto.getHighestPriceAmazon().getCreatedAt());
-        assertNotNull(productDetailsDto.getHighestPriceAmazon().getPrice());
+        assertNotNull(productDetailsDto.getLowestPricingAmazon());
+        assertNotNull(productDetailsDto.getHighestPriceAmazon());
         assertNotNull(productDetailsDto.getCurrentPriceAmazon());
         assertNotNull(productDetailsDto.getCurrentPriceThirdPart());
-        assertNotNull(productDetailsDto.getHighestPriceThirdPart().getCreatedAt());
-        assertNotNull(productDetailsDto.getHighestPriceThirdPart().getPrice());
-        assertNotNull(productDetailsDto.getLowestPricingThirdPart().getCreatedAt());
-        assertNotNull(productDetailsDto.getLowestPricingThirdPart().getPrice());
+        assertNotNull(productDetailsDto.getHighestPriceThirdPart());
+        assertNotNull(productDetailsDto.getLowestPricingThirdPart());
+
         assertNotNull(productDetailsDto);
     }
 
@@ -89,15 +86,16 @@ class PriceMapperTest {
         return productDto;
     }
 
+
     private ProductDto generateSampleProductWithNullValues() {
         ProductDto productDto = new ProductDto();
         productDto.setAsin("0000000000");
         productDto.setCreatedAt(LocalDate.now().toString());
         productDto.setCurrencySymbol("$");
         productDto.setTitle("Clean Code");
-        productDto.setCurrentPriceDto(new CurrentPriceDto(null, null));
-        productDto.setHighestPricing(new PriceByTypeDto(null, null));
-        productDto.setLowestPricing(new PriceByTypeDto(null, null));
+        productDto.setCurrentPriceDto(new CurrentPriceDto());
+        productDto.setHighestPricing(new PriceByTypeDto());
+        productDto.setLowestPricing(new PriceByTypeDto());
         return productDto;
     }
 }

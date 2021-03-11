@@ -15,5 +15,5 @@ public class PriceDetailsDto {
     @JsonProperty
     private String createdAt;
     @JsonProperty
-    private Double price;
+    private double price;
 }

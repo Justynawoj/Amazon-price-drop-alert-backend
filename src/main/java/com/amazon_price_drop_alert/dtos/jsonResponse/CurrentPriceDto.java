@@ -13,7 +13,7 @@ import lombok.Setter;
 public class CurrentPriceDto {
 
     @JsonProperty
-    private Double priceAmazon;
+    private double priceAmazon;
     @JsonProperty
-    private Double priceNew;
+    private double priceNew;
 }
