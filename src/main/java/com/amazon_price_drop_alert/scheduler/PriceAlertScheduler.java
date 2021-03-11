@@ -25,7 +25,7 @@ public class PriceAlertScheduler {
     private final AmazonPriceApiController priceApiController;
     private final RequestService requestService;
     private final EmailService emailService;
-    private final Logger LOGGER = LoggerFactory.getLogger(PriceAlertScheduler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PriceAlertScheduler.class);
 
   //  @Scheduled(cron = "0 0 10 * * *")
     @Scheduled(fixedDelay = 10000)

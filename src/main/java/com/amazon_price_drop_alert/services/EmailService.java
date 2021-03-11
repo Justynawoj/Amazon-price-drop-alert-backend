@@ -18,7 +18,7 @@ public class EmailService {
     private final JavaMailSender javaMailSender;
     private final EmailCreatorService emailCreatorService;
 
-    private final Logger LOGGER = LoggerFactory.getLogger(SimpleMailMessage.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SimpleMailMessage.class);
 
     public void send(final Mail mail){
 
@@ -41,5 +41,4 @@ public class EmailService {
             messageHelper.setText(emailCreatorService.buildEmail(mail.getRequest(),mail.getProductDetailsDto()), true);
         };
     }
-
 }
