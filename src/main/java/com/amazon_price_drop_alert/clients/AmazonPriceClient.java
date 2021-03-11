@@ -20,7 +20,7 @@ public class AmazonPriceClient {
 
     private final RestTemplate restTemplate;
     private final AmazonPriceConfig config;
-    private final Logger LOGGER = LoggerFactory.getLogger(AmazonPriceClient.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AmazonPriceClient.class);
 
     public ProductDto getResponse(String asin, String country) {
 
