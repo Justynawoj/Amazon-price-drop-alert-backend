@@ -20,25 +20,37 @@ public class EmailService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SimpleMailMessage.class);
 
-    public void send(final Mail mail){
+    public void send(final Mail mail, boolean isScheduled) {
 
         LOGGER.info("Starting email preparation");
 
         try {
-            javaMailSender.send(createMimeMessage(mail));
+            if (isScheduled) {
+                javaMailSender.send(createScheduledMimeMessage(mail));
+            } else
+                javaMailSender.send(createNewRequestMimeMessage(mail));
             LOGGER.info("Email has been sent.");
 
-        }catch (MailException e){
-            LOGGER.error("Failed to process email sending: ",e.getMessage(),e);
+        } catch (MailException e) {
+            LOGGER.error("Failed to process email sending: ", e, e.getMessage());
         }
     }
 
-    private MimeMessagePreparator createMimeMessage(final Mail mail) {
+    private MimeMessagePreparator createScheduledMimeMessage(final Mail mail) {
         return mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setTo(mail.getMailTo());
             messageHelper.setSubject(mail.getSubject());
-            messageHelper.setText(emailCreatorService.buildEmail(mail.getRequest(),mail.getProductDetailsDto()), true);
+            messageHelper.setText(emailCreatorService.buildAlertEmail(mail.getRequest(), mail.getProductDetailsDto()), true);
+        };
+    }
+
+    private MimeMessagePreparator createNewRequestMimeMessage(final Mail mail) {
+        return mimeMessage -> {
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            messageHelper.setTo(mail.getMailTo());
+            messageHelper.setSubject(mail.getSubject());
+            messageHelper.setText(emailCreatorService.buildNewRequestEmail(mail.getRequest()), true);
         };
     }
 }

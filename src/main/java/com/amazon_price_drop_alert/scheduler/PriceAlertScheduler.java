@@ -62,7 +62,7 @@ public class PriceAlertScheduler {
                         currentDetails.getCurrentPriceThirdPart() <= request.getRequestedPrice() &&
                                 currentDetails.getCurrentPriceThirdPart() > 0) {
                     String subject = generateSubject(currentDetails);
-                    emailService.send(new Mail(request.getEmail(), subject, request, currentDetails));
+                    emailService.send(new Mail(request.getEmail(), subject, request, currentDetails),true);
                     requestService.setNotActive(request.getId());
                 }
             }
