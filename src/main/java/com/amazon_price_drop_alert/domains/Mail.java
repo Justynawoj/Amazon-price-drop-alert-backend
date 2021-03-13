@@ -10,5 +10,11 @@ public class Mail {
     private final String mailTo;
     private final String subject;
     private final Request request;
-    private final ProductDetailsDto productDetailsDto;
+    private  ProductDetailsDto productDetailsDto;
+
+    public Mail(String mailTo, String subject, Request request) {
+        this.mailTo = mailTo;
+        this.subject = subject;
+        this.request = request;
+    }
 }

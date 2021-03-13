@@ -14,8 +14,9 @@ public class EmailCreatorService {
 
     private final TemplateEngine templateEngine;
     private final ActuatorConfig actuatorConfig;
+    private final RequestService requestService;
 
-    public String buildEmail( Request request, ProductDetailsDto productDetailsDto) {
+    public String buildAlertEmail(Request request, ProductDetailsDto productDetailsDto) {
         Context context = new Context();
         context.setVariable("amazon_url", request.getUrl());
         context.setVariable("author_name", actuatorConfig.getAuthorName());
@@ -31,7 +32,23 @@ public class EmailCreatorService {
                 productDetailsDto.getCurrentPriceThirdPart() <= request.getRequestedPrice()
                         && productDetailsDto.getCurrentPriceThirdPart() > 0);
 
+        /*
+        *TODO
+        * context.setVariable("removeRequest",requestService.deleteById(request.getId()));
+         */
+
+
         return templateEngine.process("mail/alert-mail.html", context);
+    }
+
+    public String buildNewRequestEmail(Request request) {
+        Context context = new Context();
+        context.setVariable("amazon_url", request.getUrl());
+        context.setVariable("author_name", actuatorConfig.getAuthorName());
+        context.setVariable("author_phone", actuatorConfig.getAuthorPhone());
+        context.setVariable("author_email", actuatorConfig.getAuthorEmail());
+
+        return templateEngine.process("mail/new-request-mail.html", context);
     }
 
 }
