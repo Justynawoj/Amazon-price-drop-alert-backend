@@ -6,15 +6,13 @@ import com.amazon_price_drop_alert.mappers.RequestMapper;
 import com.amazon_price_drop_alert.services.RequestService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@Controller
 @AllArgsConstructor
-@RequestMapping("/v1/request")
+@RequestMapping("/v1/requests")
 @EnableAspectJAutoProxy
 public class RequestController {
 
