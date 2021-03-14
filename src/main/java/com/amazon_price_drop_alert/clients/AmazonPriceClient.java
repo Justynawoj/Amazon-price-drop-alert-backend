@@ -3,8 +3,7 @@ package com.amazon_price_drop_alert.clients;
 import com.amazon_price_drop_alert.config.AmazonPriceConfig;
 import com.amazon_price_drop_alert.dtos.jsonResponse.ProductDto;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -12,15 +11,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-
 @Component
 @AllArgsConstructor
-
+@Slf4j
 public class AmazonPriceClient {
 
     private final RestTemplate restTemplate;
     private final AmazonPriceConfig config;
-    private static final Logger LOGGER = LoggerFactory.getLogger(AmazonPriceClient.class);
 
     public ProductDto getResponse(String asin, String country) {
 
@@ -35,7 +32,7 @@ public class AmazonPriceClient {
                         + "&marketplace="
                         + country,
                 HttpMethod.GET, entity, ProductDto.class);
-        LOGGER.info("Received request");
+        log.info("Received request");
         try {
             return responseObj.getBody();
         } catch (Exception e) {
