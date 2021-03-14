@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/v1/price")
+@RequestMapping(value = "/v1/prices")
 @AllArgsConstructor
 public class AmazonPriceApiController {
 
